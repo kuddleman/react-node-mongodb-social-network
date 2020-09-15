@@ -1,10 +1,8 @@
 const express = require('express')
-
+const { getPosts } = require('./routes/post')
 const app = express()
 
-app.get( '/', ( req, res ) => {
-   res.send("hello world from node.js")
-})
+app.get( '/', getPosts )
 
 const port = 8080
 app.listen( port, () => {
