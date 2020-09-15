@@ -6,7 +6,7 @@ app.get( '/', ( req, res ) => {
    res.send("hello world from node.js")
 })
 
-
-app.listen(8080)
-
-console.log(`listening on port 8080`)
+const port = 8080
+app.listen( port, () => {
+  console.log(`listening on port ${ port }...`)
+})
