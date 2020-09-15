@@ -1,9 +1,16 @@
 const express = require('express')
-const { getPosts } = require('./routes/post')
+const postRoutes = require('./routes/post')
 const app = express()
+const morgan = require('morgan')
 
-app.get( '/', getPosts )
+// middleware
+app.use(morgan('dev'))
 
+app.use( '/', postRoutes )
+
+
+
+// listener
 const port = 8080
 app.listen( port, () => {
   console.log(`listening on port ${ port }...`)
