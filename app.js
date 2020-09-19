@@ -3,6 +3,7 @@ const express = require('express')
 const postRoutes = require('./routes/post')
 const app = express()
 const morgan = require('morgan')
+const bodyParser = require('body-parser')
 const chalk = require('chalk')
 
 
@@ -25,6 +26,8 @@ mongoose.connect(process.env.DATABASE, {
 app.use(morgan('dev'))
 
 app.use( '/', postRoutes )
+
+app.use(bodyParser.json())
 
 
 
