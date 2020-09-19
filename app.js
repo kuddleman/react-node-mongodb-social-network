@@ -4,6 +4,7 @@ const postRoutes = require('./routes/post')
 const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const expressValidator = require('express-validator')
 const chalk = require('chalk')
 
 
@@ -25,9 +26,13 @@ mongoose.connect(process.env.DATABASE, {
 // middleware
 app.use(morgan('dev'))
 
+app.use(bodyParser.json())
+
+app.use(expressValidator())
+
 app.use( '/', postRoutes )
 
-app.use(bodyParser.json())
+
 
 
 
