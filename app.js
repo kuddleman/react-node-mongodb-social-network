@@ -3,6 +3,7 @@ const express = require('express')
 const postRoutes = require('./routes/post')
 const app = express()
 const morgan = require('morgan')
+const chalk = require('chalk')
 
 
 //db connection:
@@ -13,9 +14,9 @@ mongoose.connect(process.env.DATABASE, {
   useUnifiedTopology: true,
   useCreateIndex: true
 }).then(() =>{
-  console.log('DB CONNECTED')
+  console.log(chalk.bold.rgb(255,20,147)('DB CONNECTED'))
 }).catch(
-  console.log("DB DID NOT CONNECT")
+  console.log(chalk.bold.rgb(248, 131, 121)("DB DID NOT CONNECT"))
 )
 
 
@@ -30,5 +31,5 @@ app.use( '/', postRoutes )
 // listener
 const port = process.env.PORT || 8080
 app.listen( port, () => {
-  console.log(`listening on port ${ port }...`)
+  console.log(chalk.bold.rgb(10, 186, 181)(`listening on port ${ port }...`))
 })
