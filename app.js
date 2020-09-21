@@ -1,6 +1,5 @@
 require('dotenv').config()
 const express = require('express')
-const postRoutes = require('./routes/post')
 const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
@@ -21,6 +20,10 @@ mongoose.connect(process.env.DATABASE, {
   console.log(chalk.bold.rgb(248, 131, 121)("DB DID NOT CONNECT"))
 )
 
+// bring in routes
+
+const postRoutes = require('./routes/post')
+const authRoutes = require('./routes/auth')
 
 
 // middleware
@@ -31,6 +34,8 @@ app.use(bodyParser.json())
 app.use(expressValidator())
 
 app.use( '/', postRoutes )
+
+app.use('/', authRoutes)
 
 
 

@@ -27,19 +27,20 @@ const userSchema = new mongoose.Schema({
 })
 
 //virtual field
-userSchema('password')
-.set((password) => {
-  this._password = password
+userSchema
+  .virtual('password')
+  .set((password) => {
+    this._password = password
 
-  // generate a timestamp
-  this.salt = uuidv1()
+    // generate a timestamp
+    this.salt = uuidv1()
 
-  // encryptPassword()
-  this.hashed_password = this.encryptPassword(password)
-})
-.get(() =>{
-  return this._password
-})
+    // encryptPassword()
+    this.hashed_password = this.encryptPassword(password)
+  })
+  .get(() =>{
+    return this._password
+  })
 
 //methods
 userSchema.methods = {
